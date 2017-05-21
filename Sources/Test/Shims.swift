@@ -102,7 +102,7 @@ public func assertEqual<T, U>(
     _ expression2: @autoclosure () throws -> [T : U],
     _ message: @autoclosure () -> String = "",
     file: StaticString = #file,
-    line: UInt = #line) where T : Hashable, U : Equatable {
+    line: UInt = #line) where U : Equatable {
     XCTAssertEqual(expression1, expression2, message, file: file, line: line)
 }
 
@@ -223,7 +223,7 @@ public func assertNotEqual<T, U>(
     _ expression2: @autoclosure () throws -> [T : U],
     _ message: @autoclosure () -> String = "",
     file: StaticString = #file,
-    line: UInt = #line) where T : Hashable, U : Equatable {
+    line: UInt = #line) where U : Equatable {
     XCTAssertNotEqual(expression1, expression2, message, file: file, line: line)
 }
 
