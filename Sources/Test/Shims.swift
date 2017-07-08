@@ -106,22 +106,6 @@ public func assertEqual<T, U>(
     XCTAssertEqual(expression1, expression2, message, file: file, line: line)
 }
 
-public func assertEqualWithAccuracy<T>(
-    _ expression1: @autoclosure () throws -> T,
-    _ expression2: @autoclosure () throws -> T,
-    accuracy: T,
-    _ message: @autoclosure () -> String = "",
-    file: StaticString = #file,
-    line: UInt = #line) where T : FloatingPoint {
-    XCTAssertEqualWithAccuracy(
-        expression1,
-        expression2,
-        accuracy: accuracy,
-        message,
-        file: file,
-        line: line)
-}
-
 public func assertGreaterThan<T>(
     _ expression1: @autoclosure () throws -> T,
     _ expression2: @autoclosure () throws -> T,
@@ -225,22 +209,6 @@ public func assertNotEqual<T, U>(
     file: StaticString = #file,
     line: UInt = #line) where U : Equatable {
     XCTAssertNotEqual(expression1, expression2, message, file: file, line: line)
-}
-
-public func assertNotEqualWithAccuracy<T>(
-    _ expression1: @autoclosure () throws -> T,
-    _ expression2: @autoclosure () throws -> T,
-    accuracy: T,
-    _ message: @autoclosure () -> String = "",
-    file: StaticString = #file,
-    line: UInt = #line) where T : FloatingPoint {
-    XCTAssertNotEqualWithAccuracy(
-        expression1,
-        expression2,
-        accuracy,
-        message,
-        file: file,
-        line: line)
 }
 
 public func assertThrowsError<T>(
