@@ -15,9 +15,11 @@ let package = Package(
     name: "Test",
     products: [
         .library(name: "Test", targets: ["Test"]),
+        .library(name: "Measure", targets: ["Measure"]),
     ],
     targets: [
         .target(name: "Test"),
+        .target(name: "Measure"),
         .testTarget(name: "TestTests", dependencies: ["Test"])
     ]
 )
