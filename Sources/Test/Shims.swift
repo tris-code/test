@@ -10,7 +10,7 @@
 
 import XCTest
 
-open class TestCase: XCTestCase {}
+public typealias TestCase = XCTestCase
 
 public func assert(
     _ expression: @autoclosure () throws -> Bool,
