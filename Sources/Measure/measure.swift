@@ -14,22 +14,26 @@ import Foundation
 let RUSAGE_SELF = Int32(Glibc.RUSAGE_SELF.rawValue)
 #endif
 
-public func average(of count: Int, _ task: () -> MeasureResult) -> [MeasureResult] {
+public func average(
+    of count: Int, _ task: () throws -> MeasureResult
+) rethrows -> [MeasureResult] {
     var results = [MeasureResult]()
     for _ in 0..<count {
-        results.append(task())
+        results.append(try task())
     }
     return results
 }
 
-public func measure(repeat count: Int = 1, _ task: () -> Void) -> MeasureResult {
+public func measure(
+    repeat count: Int = 1, _ task: () throws -> Void
+) rethrows -> MeasureResult {
     var usageStart = rusage()
     var usageEnd = rusage()
 
     getrusage(RUSAGE_SELF, &usageStart)
     let start = timespec.now()
     for _ in 0..<count {
-        task()
+        try task()
     }
     let end = timespec.now()
     getrusage(RUSAGE_SELF, &usageEnd)
