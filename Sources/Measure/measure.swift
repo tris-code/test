@@ -24,16 +24,23 @@ public func average(
     return results
 }
 
+@inline(__always)
 public func measure(
     repeat count: Int = 1, _ task: () throws -> Void
+) rethrows -> MeasureResult {
+    return try measure(repeat: count, { _ in try task() })
+}
+
+public func measure(
+    repeat count: Int = 1, _ task: (Int) throws -> Void
 ) rethrows -> MeasureResult {
     var usageStart = rusage()
     var usageEnd = rusage()
 
     getrusage(RUSAGE_SELF, &usageStart)
     let start = timespec.now()
-    for _ in 0..<count {
-        try task()
+    for i in 0..<count {
+        try task(i)
     }
     let end = timespec.now()
     getrusage(RUSAGE_SELF, &usageEnd)
