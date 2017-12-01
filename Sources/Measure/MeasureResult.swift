@@ -17,7 +17,11 @@ public struct MeasureResult {
     public let system: timeval
 
     public let iterations: Int
+
     public var tasksPerSecond: Int {
+        guard time.ns > 0 else {
+            return -1
+        }
         return iterations * 1_000_000_000 / time.ns
     }
 }
