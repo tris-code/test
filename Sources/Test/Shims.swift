@@ -251,7 +251,7 @@ public func assertThrowsError<T>(
     _ errorHandler: (_ error: Error) -> Void = { _ in }) {
     XCTAssertThrowsError(
         expression,
-        message(),
+        message,
         file: file,
         line: line,
         errorHandler)
