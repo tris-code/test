@@ -1,6 +1,8 @@
 import XCTest
-@testable import TestTests
 
-XCTMain([
-    testCase(AtomicConditionTests.allTests),
-])
+import TestTests
+
+var tests = [XCTestCaseEntry]()
+tests += TestTests.__allTests()
+
+XCTMain(tests)

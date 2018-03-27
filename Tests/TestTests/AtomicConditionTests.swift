@@ -31,9 +31,4 @@ class AtomicConditionTests: TestCase {
         assertTrue(condition2.satisfied)
         assertTrue(condition3.satisfied)
     }
-
-
-    static var allTests = [
-        ("testAtomicCondition", testAtomicCondition),
-    ]
 }
