@@ -9,7 +9,11 @@
  *                                                                            *
  ******************************************************************************/
 
-import Foundation
+#if os(macOS)
+import Darwin
+#else
+import Glibc
+#endif
 
 extension timeval {
     var ms: Int {

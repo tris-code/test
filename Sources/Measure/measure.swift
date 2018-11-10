@@ -9,7 +9,11 @@
  *                                                                            *
  ******************************************************************************/
 
-import Foundation
+#if os(macOS)
+import Darwin
+#else
+import Glibc
+#endif
 
 #if os(Linux)
 let RUSAGE_SELF = Int32(Glibc.RUSAGE_SELF.rawValue)
