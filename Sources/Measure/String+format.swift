@@ -1,14 +1,3 @@
-/******************************************************************************
- *                                                                            *
- * Tris Foundation disclaims copyright to this source code.                   *
- * In place of a legal notice, here is a blessing:                            *
- *                                                                            *
- *     May you do good and not evil.                                          *
- *     May you find forgiveness for yourself and forgive others.              *
- *     May you share freely, never taking more than you give.                 *
- *                                                                            *
- ******************************************************************************/
-
 #if os(macOS)
 import Darwin
 #else
@@ -23,10 +12,10 @@ extension String {
         case "%.2f": factor = 100
         case "%.3f": factor = 1000
         default:
-            guard format.starts(with: "%."), 
-                format.last == "f", 
+            guard format.starts(with: "%."),
+                format.last == "f",
                 format.count > 3,
-                let count = Int(format.dropFirst(2).dropLast(1)) else 
+                let count = Int(format.dropFirst(2).dropLast(1)) else
             {
                 self.init(value)
                 return
