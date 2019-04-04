@@ -21,6 +21,22 @@ public struct MeasureResult {
 }
 
 extension Array where Element == MeasureResult {
+    public var best: MeasureResult? {
+        guard
+            let time = self.min(by: { $0.time < $1.time })?.time,
+            let user = self.min(by: { $0.user < $1.user })?.user,
+            let system = self.min(by: { $0.system < $1.system })?.system,
+            let iterations = self.min(by: { $0.iterations < $1.iterations })?.iterations
+            else {
+                return nil
+            }
+        return MeasureResult(
+            time: time,
+            user: user,
+            system: system,
+            iterations: iterations)
+    }
+
     public var average: MeasureResult {
         let time = self.map({ $0.time }).reduce(timespec(), +) / self.count
         let user = self.map({ $0.user }).reduce(timeval(), +) / self.count

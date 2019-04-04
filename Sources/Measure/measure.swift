@@ -8,14 +8,25 @@ import Glibc
 let RUSAGE_SELF = Int32(Glibc.RUSAGE_SELF.rawValue)
 #endif
 
-public func average(
-    of count: Int, _ task: () throws -> MeasureResult
-) rethrows -> [MeasureResult] {
+public func best(
+    from count: Int, _ task: () throws -> MeasureResult
+) rethrows -> MeasureResult {
+    precondition(count > 0)
     var results = [MeasureResult]()
     for _ in 0..<count {
         results.append(try task())
     }
-    return results
+    return results.best!
+}
+
+public func average(
+    of count: Int, _ task: () throws -> MeasureResult
+) rethrows -> MeasureResult {
+    var results = [MeasureResult]()
+    for _ in 0..<count {
+        results.append(try task())
+    }
+    return results.average
 }
 
 @inline(__always)
